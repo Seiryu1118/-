@@ -32,7 +32,7 @@ end
   get '/admin' => 'admin/homes#top'
  # 管理者用
  namespace :admin do
-  resources :reviews, only: [:destroy]
+  resources :reviews, only: [:show,:destroy]
   resources :types, only: [:index,:create,:edit,:update]
   resources :soups, only: [:index,:create,:edit,:update]
   resources :customers, only: [:index,:show,:edit,:update]
