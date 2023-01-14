@@ -1,2 +1,35 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<h2>レビューを投稿しよう</h2>
+ <%= form_with model: @review do |f| %>
+  <tr>
+    <td>店名</td>
+    <td><%= f.text_field :name %> </td>
+  </tr>
+  <tr>
+    <td>住所</td>
+    <td><%= f.text_field :address %></td>
+  </tr>
+  <tr>
+    <td>メニュー</td>
+    <td><%= f.text_field :menu %></td>
+  </tr>
+  <tr>
+    <td>分類</td>
+    <td><%= f.text_field :type %></td>
+  </tr>
+  <tr>
+    <td>スープ</td>
+    <td><%= f.text_field :soup %></td>
+  </tr>
+  <tr>
+    <td>点数</td>
+    <td><%= f.text_field :rate %></td>
+  </tr>
+  <tr>
+    <td>写真</td>
+    <td><%= f.file_field :image, accept: "image/*" %></td>
+  </tr>
+  <tr>
+    <td>コメント</td>
+    <td><%= f.text_area :introduction %></td>
+  </tr>
+<% end %>
