@@ -1,5 +1,5 @@
 <h2>レビューを投稿しよう</h2>
- <%= form_with model: @review do |f| %>
+ <%= form_with model: @review, local: true do |f| %>
   <tr>
     <td>店名</td>
     <td><%= f.text_field :name %> </td>
@@ -14,15 +14,15 @@
   </tr>
   <tr>
     <td>分類</td>
-    <td><%= f.text_field :type %></td>
+    <td><%= f.collection_select :type_id, Type.all, :id, :name,include_blank: "選択して下さい" %></td>
   </tr>
   <tr>
     <td>スープ</td>
-    <td><%= f.text_field :soup %></td>
+    <td><%= f.collection_select :soup_id, Soup.all, :id, :name,include_blank: "選択して下さい" %></td>
   </tr>
   <tr>
-    <td>点数</td>
-    <td><%= f.text_field :rate %></td>
+    <td><%= f.label :rate,'評価'%></td>
+    <td><div id="star"><%= f.hidden_field :rate, id: :review_star %></div></td>
   </tr>
   <tr>
     <td>写真</td>
@@ -32,4 +32,20 @@
     <td>コメント</td>
     <td><%= f.text_area :introduction %></td>
   </tr>
+  <div>
+  <%= f.submit "レビューを保存して投稿する",class:"btn btn-success center-block" %>
+  </div>
 <% end %>
+
+<script>
+raty( document.getElementById('star'),
+{
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  half: true,
+  scoreName: 'review[rate]'
+  }
+);
+</script>

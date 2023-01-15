@@ -11,6 +11,8 @@ class Public::ReviewsController < ApplicationController
   
   def create
     @review = Review.new(review_params)
+    @type = Type.all
+    @soup = Soup.all
     if @review.save
       redirect_to review_path
     else
@@ -38,6 +40,6 @@ class Public::ReviewsController < ApplicationController
   private
   
   def review_params
-    params.require(:review).permit(:name,:addresses,:menu,:introduction,:star,:image)
+    params.require(:review).permit(:name,:addresses,:menu,:introduction,:rate,:image,)
   end
 end
