@@ -16,11 +16,11 @@ scope module: :public do
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     
-    resources :reviews, only: [:index,:new,:create,:show,:edit,:update] do
+    resources :reviews, only: [:index,:new,:create,:show,:edit,:update,:destroy] do
       resources :comments, only: [:create,:destroy]
       resource :favorites, only: [:index,:create,:destroy]
     end
-    resources :myreviews, only: [:index]
+    resources :myreviews, only: [:index,:destroy]
 end
 
   # 管理者用(ログイン)
@@ -37,5 +37,9 @@ end
   resources :soups, only: [:index,:create,:edit,:update]
   resources :customers, only: [:index,:show,:edit,:update]
   
+  end
+  #ゲストユーザーログイン
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 end

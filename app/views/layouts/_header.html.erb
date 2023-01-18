@@ -1,0 +1,79 @@
+<header>
+  <nav class="navbar navbar-light mb-2" style="background-color:#fff7ef;">
+    <div class="container">
+      <p class="text-left"><%= link_to root_path, data: {"turbolinks" => false} do %>
+            <%= image_tag 'Review Box.png',size: '110x110' %>
+            <% end %>
+      </p>
+
+    <!--顧客がサインインした場合-->
+    <% if customer_signed_in? %>
+    <span>ようこそ！<%= current_customer.name %>さん</span>
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <%= link_to "Top", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "レビュー一覧", reviews_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "レビュー投稿", new_review_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "マイページ", mypage_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link" %>
+        </li>
+      </ul>
+
+
+      <!--＜管理者がログインした場合＞-->
+      <% elsif admin_signed_in? %>
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <%= link_to "レビュー一覧", admin_path, class: "nav-link"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "分類一覧", admin_types_path,  class: "nav-link"%>
+        </li>
+        <li class="nav-item">
+        <%= link_to "スープ一覧", admin_soups_path, class: "nav-link"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+        </li>
+      </ul>
+
+
+      <!--＜サインインしていない場合＞-->
+      <% else %>
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <%= link_to "Top", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About", about_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "レビュー一覧", reviews_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
+        </li>
+      </ul>
+    <% end %>
+    <div>
+      <% unless admin_signed_in? %>
+      <%= render "layouts/search", { search: @search } %>
+      <% end %>
+    </div>
+    </div>
+  </nav>
+</header>

@@ -1,15 +1,19 @@
 class Admin::SoupsController < ApplicationController
    before_action :authenticate_admin!
-   
+
   def index
     @soups = Soup.all
     @soup = Soup.new
   end
 
   def create
-    @soup = Soup.new(so_params)
-    @soup.save
-     redirect_to admin_soups_path
+    @soup = Soup.new(soup_params)
+    if @soup.save
+      redirect_to admin_soups_path
+    else
+      @soups = Soup.all
+      render :index
+    end
   end
 
   def edit
@@ -25,10 +29,10 @@ class Admin::SoupsController < ApplicationController
       render :edit
      end
   end
- 
+
   private
 
-  def genre_params
+  def soup_params
     params.require(:soup).permit(:name)
   end
 end

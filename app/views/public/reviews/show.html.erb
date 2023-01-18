@@ -1,2 +1,59 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <h2 class="bg-light text-center">レビュー詳細画面</h2>
+        <table class="table table-borderless">
+         <tbody>
+          <tr>
+           <td>店名</td>
+           <td><%= @review.name %> </td>
+          </tr>
+          <tr>
+           <td>住所</td>
+           <td><%= @review.address %></td>
+          </tr>
+          <tr>
+           <td>メニュー</td>
+           <td><%= @review.menu %></td>
+          </tr>
+          <tr>
+           <td>分類</td>
+           <td><%= @review.type.name %></td>
+          </tr>
+          <tr>
+           <td>スープ</td>
+           <td><%= @review.soup.name %></td>
+          </tr>
+          <tr>
+           <td>評価</td>
+           <td id="star"></td>
+          </tr>
+          <tr>
+           <td>写真</td>
+           <td><%= image_tag @review.image %></td>
+          </tr>
+          <tr>
+           <td>コメント</td>
+           <td><%= @review.introduction %></td>
+          </tr>
+         </tbody>
+        </table>
+        <div>
+          <%= link_to "編集する", edit_review_path(@review), class:"btn btn-success" %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var elem = document.getElementById('star');
+var opt = {
+    size     : 36,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    readOnly: true,
+    score: <%= @review.rate %>
+  };
+  raty(elem,opt);
+</script>

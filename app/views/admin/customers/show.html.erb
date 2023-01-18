@@ -1,2 +1,51 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<h2><%= @customer.name %>さんの会員詳細</h2>
+     
+ <table class="table">
+  <tbody>
+   <div class="row-lg-11">
+   <tr></tr>
+    <tr>
+     <th>会員ID</th>
+     <th>
+     <%= @customer.id %>
+     </th>
+    </tr>
+    <tr>
+     <th>アカウント名</th>
+     <th><%= @customer.name %></th>
+    </tr>
+    <tr>
+     <th>メールアドレス</th>
+     <th>
+     <%= @customer.email %>
+     </th>
+    </tr>
+    <tr>
+     <th>性別</th>
+     <th>
+     <%= @customer.sex %>
+     </th>
+    </tr>
+    <tr>
+     <th>生まれた年</th>
+     <th>
+     <%= @customer.birth_year %>
+     </th>
+    </tr>
+    <tr>
+     <th>会員ステータス</th>
+     <th>
+     <% @customer.is_deleted %>
+    <% if @customer.is_deleted == false %><p class= "text-success" >有効</p>
+    <% elsif @customer.is_deleted == true %>退会
+    <% end %>
+     </th>
+    </tr>
+    </div>
+   </tbody>
+</table>
+     <div class="form-group">
+      <%= link_to '編集する', edit_admin_customer_path, class: "btn btn-success" %>
+
+      <%= link_to '会員一覧を見る', admin_customers_path, class: "btn btn-primary" %>
+

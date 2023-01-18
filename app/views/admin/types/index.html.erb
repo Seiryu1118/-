@@ -1,2 +1,38 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<div class="container">
+  <div class="row py-2">
+    <div class="col-10">
+      <h2>分類一覧・追加</h2>
+    </div>
+  </div>
+  <div class="row py-4">
+    <div class="col-8">
+     <table>
+      <%= form_with model: @type, url: admin_types_path do |f| %>
+     <td class="col-2"><%= f.label :name, "分類名"  %></td>
+     <td class="col-2"><%= f.text_field :name %></td>
+     <td class="col-4"><%= f.submit '新規登録', class: "btn btn-success"%></td>
+      <% end %>
+     </table>
+     </div>
+   </div>
+
+   <div class="row">
+     <div class="col-6">
+      <table class='table'>
+       <thead>
+        <tr class="table-secondary">
+         <th>分類</th>
+         <th></th>
+        </tr>
+       </thead>
+       <tbody>
+       <% @types.each do |type| %>
+        <tr class="border-bottom">
+         <td><%= type.name %></td>
+         <td><%= link_to '編集する', edit_admin_type_path(type.id), class: "btn btn-success"%></td>
+        </tr>
+       <% end %>
+       </tbody>
+      </table>
+     </div>
+   </div>

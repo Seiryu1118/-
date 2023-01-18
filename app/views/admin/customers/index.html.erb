@@ -1,2 +1,29 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<div class="row-lg-10">
+    <table class="table">
+      <div class=container3>
+      <thead>
+       <tr bgcolor="silver">
+<h2>会員一覧</h2>
+  <thead>
+		<th>会員ID</th>
+		<th>アカウント名</th>
+		<th>メールアドレス</th>
+		<th>ステータス</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% @customers.each do |customer| %>
+			<tr>
+				<td><%= customer.id %></td>
+				<td><%= customer.name %></td>
+				<td><%= customer.email %></td>
+				<td>
+					 <% if customer.is_deleted == false %><div class= "text-success" >有効</div>
+            <% elsif customer.is_deleted == true %>退会
+            <% end %>
+				</td>
+				<td><%= link_to "詳細", admin_customer_path(customer), class: "btn btn-primary" %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

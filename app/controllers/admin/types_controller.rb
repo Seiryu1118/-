@@ -8,8 +8,12 @@ class Admin::TypesController < ApplicationController
 
   def create
     @type = Type.new(type_params)
-    @type.save
-     redirect_to admin_types_path
+    if @type.save
+      redirect_to admin_types_path
+    else
+      @types = Type.all
+      render :index
+    end
   end
 
   def edit
@@ -28,7 +32,7 @@ class Admin::TypesController < ApplicationController
  
   private
 
-  def genre_params
+  def type_params
     params.require(:type).permit(:name)
   end
 end

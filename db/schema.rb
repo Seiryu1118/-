@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2023_01_13_064522) do
     t.string "name", null: false
     t.string "sex"
     t.string "birth_year"
+    t.text "content"
     t.boolean "is_deleted", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

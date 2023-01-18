@@ -1,51 +1,61 @@
-<h2>レビューを投稿しよう</h2>
- <%= form_with model: @review, local: true do |f| %>
-  <tr>
-    <td>店名</td>
-    <td><%= f.text_field :name %> </td>
-  </tr>
-  <tr>
-    <td>住所</td>
-    <td><%= f.text_field :address %></td>
-  </tr>
-  <tr>
-    <td>メニュー</td>
-    <td><%= f.text_field :menu %></td>
-  </tr>
-  <tr>
-    <td>分類</td>
-    <td><%= f.collection_select :type_id, Type.all, :id, :name,include_blank: "選択して下さい" %></td>
-  </tr>
-  <tr>
-    <td>スープ</td>
-    <td><%= f.collection_select :soup_id, Soup.all, :id, :name,include_blank: "選択して下さい" %></td>
-  </tr>
-  <tr>
-    <td><%= f.label :rate,'評価'%></td>
-    <td><div id="star"><%= f.hidden_field :rate, id: :review_star %></div></td>
-  </tr>
-  <tr>
-    <td>写真</td>
-    <td><%= f.file_field :image, accept: "image/*" %></td>
-  </tr>
-  <tr>
-    <td>コメント</td>
-    <td><%= f.text_area :introduction %></td>
-  </tr>
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <h2 class="bg-light text-center">レビューを投稿しよう</h2>
+       <%= form_with model: @review, local: true do |f| %>
+        <table class="table table-borderless">
+         <tbody>
+          <tr>
+           <td><%= f.label :"店名" %></td>
+           <td><%= f.text_field :name, size:"40" %> </td>
+          </tr>
+          <tr>
+           <td><%= f.label :"住所" %></td>
+           <td><%= f.text_field :address, size:"40" %></td>
+          </tr>
+          <tr>
+           <td><%= f.label :"メニュー" %></td>
+           <td><%= f.text_field :menu, size:"40" %></td>
+          </tr>
+          <tr>
+           <td><%= f.label :"分類" %></td>
+           <td><%= f.collection_select :type_id, Type.all, :id, :name,include_blank: "選択して下さい", size:"40" %></td>
+          </tr>
+          <tr>
+           <td><%= f.label :"スープ" %></td>
+           <td><%= f.collection_select :soup_id, Soup.all, :id, :name,include_blank: "選択して下さい", size:"40" %></td>
+          </tr>
+          <tr>
+           <td><%= f.label :rate, "評価" %></td>
+           <td><div id="star"><%= f.hidden_field :rate, id: :review_star %></div></td>
+          </tr>
+          <tr>
+           <td><%= f.label :"写真" %></td>
+           <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+           <td><%= f.label :"コメント" %></td>
+           <td><%= f.text_area :introduction, size:"40" %></td>
+          </tr>
+         </tbody>
+        </table>
   <div>
   <%= f.submit "レビューを保存して投稿する",class:"btn btn-success center-block" %>
   </div>
 <% end %>
+   </div>
+  </div>
+</div>
 
 <script>
-raty( document.getElementById('star'),
-{
-  size     : 36,
-  starOff:  '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  starHalf: '<%= asset_path('star-half.png') %>',
-  half: true,
-  scoreName: 'review[rate]'
-  }
-);
+var elem = document.getElementById('star');
+var opt = {
+    size     : 36,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    // half: true,
+    scoreName: 'review[rate]'
+  };
+  raty(elem,opt);
 </script>

@@ -1,1 +1,29 @@
-<h1>トップページ</h1>
+<h2>レビュー一覧</h2>
+<table class="table table-bordered border-dark">
+   <thead>
+    <tr class="table-secondary">
+      <th>お店</th>
+      <th>メニュー</th>
+      <th>点数</th>
+      <th>いいね数</th>
+      <th>コメント数</th>
+      <th>公開日</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+   </thead>
+   <tbody>
+     <% @reviews.each do |review| %>
+     <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= link_to '表示する', edit_review_path(review), class: "btn btn-primary" %></td>
+        <td><%= link_to '削除する', review_path, method: :delete, class: "btn btn-primary" %></td>
+      </tr>
+     <% end %>
+   </tbody>
+  </table>

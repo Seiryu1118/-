@@ -19,6 +19,7 @@ window.$ = window.jQuery = require('jquery');
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
 import Raty from "packs/raty.js"
 window.raty = function(elem,opt){
     let raty =  new Raty(elem,opt)

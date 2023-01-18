@@ -1,2 +1,33 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<h2>マイページ</h2>
+<% if @customer.name != "guestuser" %>
+<p class="font-weight-bold h4">登録情報 <%= link_to "編集する",edit_information_path(@customer), class:"btn btn-success" %></p>
+<% end %>
+<table class="table table-bordered">
+  <tbody>
+    <tr></tr>
+    <tr>
+      <td class="table-secondary">アカウント名</td>
+      <td><%= @customer.name %></td>
+    </tr>
+    <tr>
+      <td class="table-secondary">性別</td>
+      <td><%= @customer.sex %></td>
+    </tr>
+    <tr>
+      <td class="table-secondary">生まれた年</td>
+      <td><%= @customer.birth_year %></td>
+    </tr>
+    <tr>
+      <td class="table-secondary">コメント</td>
+      <td><%= @customer.content %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p><%= link_to "レビュー一覧", myreviews_path, class:"btn btn-primary" %></p>
+
+<p><%= link_to "いいね一覧",  class:"btn btn-primary" %></p>
+    </div>
+  </div>
+</div>

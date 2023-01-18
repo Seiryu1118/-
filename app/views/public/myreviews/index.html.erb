@@ -1,2 +1,42 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<h2>レビュー一覧</h2>
+<table class="table table-bordered border-dark">
+   <thead>
+    <tr class="table-secondary">
+      <th>お店</th>
+      <th>メニュー</th>
+      <th>点数</th>
+      <th>いいね数</th>
+      <th>コメント数</th>
+      <th>公開日</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+   </thead>
+   <tbody>
+     <% @reviews.each do |review| %>
+     <tr>
+        <td><%= review.name %></td>
+        <td><%= review.menu %></td>
+        <td id="star"></td>
+        <td><%= review.name %></td>
+        <td><%= review.name %></td>
+        <td><%= review.name %></td>
+        <td><%= link_to '表示する', edit_review_path(review), class: "btn btn-primary" %></td>
+        <td><%= link_to '削除する', myreviews_path, method: :delete, class: "btn btn-primary" %></td>
+      </tr>
+     <% end %>
+   </tbody>
+  </table>
+
+<script>
+//   var elem = document.getElementById('star');
+//   var opt = {
+    // size     : 36,
+    // starOn: "<%= asset_path('star-on.png') %>",
+    // starOff: "<%= asset_path('star-off.png') %>",
+    // starHalf: "<%= asset_path('star-half.png') %>",
+    // readOnly: true,
+    // score: <%#= @review.rate %>
+//   };
+//   raty(elem,opt);
+</script>
