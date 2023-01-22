@@ -2,27 +2,25 @@
 <table class="table table-bordered border-dark">
    <thead>
     <tr class="table-secondary">
+      <th>レビューID</th>
       <th>お店</th>
       <th>メニュー</th>
       <th>点数</th>
       <th>いいね数</th>
       <th>コメント数</th>
       <th>公開日</th>
-      <th>編集</th>
-      <th>削除</th>
     </tr>
    </thead>
    <tbody>
-     <% @reviews.each do |review| %>
+     <% @review.each do |review| %>
      <tr>
-        <td><%= link_to review.name,review_path(review) %></td>
+        <td><%= review.id %></td>
+        <td><%= link_to review.name,admin_review_path(review) %></td>
         <td><%= review.menu %></td>
         <td id= 'star<%= review.id %>' ></td>
         <td>いいね:<%= review.favorites.count %></td>
         <td>コメント数:<%= review.comments.count %></td>
         <td><%= review.updated_at.strftime('%Y/%m/%d') %></td>
-        <td><%= link_to '表示する', edit_review_path(review), class: "btn btn-primary" %></td>
-        <td><%= link_to '削除する', myreview_path(review), method: :delete, class: "btn btn-primary" %></td>
       </tr>
       <script>
        var elem = document.getElementById('star<%= review.id %>');
