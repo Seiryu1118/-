@@ -2,8 +2,40 @@
   <div class="row">
     <div class="col-10">
       <h2 class="bg-light text-center">レビュー詳細画面</h2>
+      <div id="map" style="width:500px; height:500px"></div>
+      <script>
+       function initMap(){
+        let mapPosition = {lat: <%= @review.latitude || 0 %> , lng: <%= @review.longitude || 0 %> };
+        let map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: mapPosition,
+            zoomControl: false
+         });
+        let transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+
+        let contentString = '【住所】<%= @review.address %>';
+        let infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        let marker = new google.maps.Marker({
+          position: mapPosition,
+          map: map,
+          title: contentString
+        });
+
+        marker.addListener('click', function(){
+          infowindow.open(map, marker);
+        });
+      }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
         <table class="table table-borderless">
          <tbody>
+           <div id=<%= "favorite_buttons_" + @review.id.to_s %> >
+            <%= render "public/favorites/btn", review: @review %>
+          </div>
           <tr>
            <td>店名</td>
            <td><%= @review.name %> </td>
@@ -27,6 +59,18 @@
           <tr>
            <td>評価</td>
            <td id="star"></td>
+           <script>
+            var elem = document.getElementById('star');
+            var opt = {
+                size     : 36,
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                readOnly: true,
+                score: <%= @review.rate %>
+               };
+                raty(elem,opt);
+          </script>
           </tr>
           <tr>
            <td>写真</td>
@@ -38,22 +82,17 @@
           </tr>
          </tbody>
         </table>
+        <% if @review.customer == current_customer %>
         <div>
           <%= link_to "編集する", edit_review_path(@review), class:"btn btn-success" %>
+        </div>
+        <% end %>
+        <div class="comments_index">
+          <%= render 'public/comments/index', review: @review %>
+        </div>
+        <div class="new_comment">
+          <%= render 'public/comments/form', review: @review, comment: @comment %>
         </div>
     </div>
   </div>
 </div>
-
-<script>
-var elem = document.getElementById('star');
-var opt = {
-    size     : 36,
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    readOnly: true,
-    score: <%= @review.rate %>
-  };
-  raty(elem,opt);
-</script>

@@ -15,6 +15,10 @@ class Customer < ApplicationRecord
    validates :email,presence: true
   # validates :sex,presence: true
   # validates :birth_year,presence: true
+  
+  def get_image
+    (image.attached?) ? image : 'no_image.jpg'
+  end
 
   #ゲストログイン
     def self.guest

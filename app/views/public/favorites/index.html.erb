@@ -1,4 +1,4 @@
-<h2>みんなのレビュー</h2>
+<h2>いいね一覧</h2>
 <table class="table table-bordered border-dark">
    <thead>
     <tr class="table-secondary">
@@ -11,7 +11,7 @@
     </tr>
    </thead>
    <tbody>
-     <% @review.each do |review| %>
+     <% @favorites_list.each do |review| %>
      <tr>
         <td><%= link_to review.name,review_path(review) %></td>
         <td><%= review.menu %></td>

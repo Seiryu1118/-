@@ -2,7 +2,7 @@ Rails.application.routes.draw do
    #会員用のトップページ
    root to: 'public/homes#top'
     get '/about' => 'public/homes#about'
- 
+
   # 会員用(新規登録・ログイン)
  devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -11,14 +11,19 @@ Rails.application.routes.draw do
 
 scope module: :public do
     get 'customers/mypage' => 'customers#show', as: 'mypage'
-    get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
+    get 'customers/information/edit/:id' => 'customers#edit', as: 'edit_information'
     patch 'customers/information' => 'customers#update', as: 'update_information'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
-    
+    #  member do
+    #  get :favorites
+    #  end
+    # end
+    get 'favorites' => 'favorites#index', as: 'favorites'
+
     resources :reviews, only: [:index,:new,:create,:show,:edit,:update,:destroy] do
       resources :comments, only: [:create,:destroy]
-      resource :favorites, only: [:index,:create,:destroy]
+      resource :favorites, only: [:create,:destroy]
     end
     resources :myreviews, only: [:index,:destroy]
 end
@@ -36,7 +41,7 @@ end
   resources :types, only: [:index,:create,:edit,:update]
   resources :soups, only: [:index,:create,:edit,:update]
   resources :customers, only: [:index,:show,:edit,:update]
-  
+
   end
   #ゲストユーザーログイン
   devise_scope :customer do

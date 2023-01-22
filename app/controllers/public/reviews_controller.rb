@@ -6,7 +6,7 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.all
+    @review = Review.all
   end
 
   def create
@@ -23,6 +23,7 @@ class Public::ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -38,13 +39,9 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
-  def destroy
-
-  end
-
   private
 
   def review_params
-    params.require(:review).permit(:name,:address,:menu,:introduction,:rate,:image,:type_id,:soup_id)
+    params.require(:review).permit(:name,:address,:latitude,:longitude,:menu,:introduction,:rate,:image,:type_id,:soup_id)
   end
 end

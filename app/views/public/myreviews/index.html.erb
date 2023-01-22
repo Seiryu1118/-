@@ -13,30 +13,29 @@
     </tr>
    </thead>
    <tbody>
-     <% @reviews.each do |review| %>
+     <% @review.each do |review| %>
      <tr>
-        <td><%= review.name %></td>
+        <td><%= link_to review.name,review_path(review) %></td>
         <td><%= review.menu %></td>
-        <td id="star"></td>
-        <td><%= review.name %></td>
-        <td><%= review.name %></td>
-        <td><%= review.name %></td>
+        <td id= 'star<%= review.id %>' ></td>
+        <td>いいね:<%= review.favorites.count %></td>
+        <td>コメント数:<%= review.comments.count %></td>
+        <td><%= review.updated_at.strftime('%Y/%m/%d') %></td>
         <td><%= link_to '表示する', edit_review_path(review), class: "btn btn-primary" %></td>
-        <td><%= link_to '削除する', myreviews_path, method: :delete, class: "btn btn-primary" %></td>
+        <td><%= link_to '削除する', myreview_path(review), method: :delete, class: "btn btn-primary" %></td>
       </tr>
+      <script>
+       var elem = document.getElementById('star<%= review.id %>');
+       var opt = {
+        size     : 36,
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        readOnly: true,
+        score: <%= review.rate %>
+       };
+        raty(elem,opt);
+      </script>
      <% end %>
    </tbody>
   </table>
-
-<script>
-//   var elem = document.getElementById('star');
-//   var opt = {
-    // size     : 36,
-    // starOn: "<%= asset_path('star-on.png') %>",
-    // starOff: "<%= asset_path('star-off.png') %>",
-    // starHalf: "<%= asset_path('star-half.png') %>",
-    // readOnly: true,
-    // score: <%#= @review.rate %>
-//   };
-//   raty(elem,opt);
-</script>

@@ -1,7 +1,11 @@
 class Review < ApplicationRecord
   #画像を表示する記述
    has_one_attached :image
-   
+
+   #GoogleMapの住所入力
+   geocoded_by :address
+   after_validation :geocode
+
    has_many :comments, dependent: :destroy
    has_many :favorites, dependent: :destroy
    # customerとreviewは1対多の関係
@@ -10,14 +14,20 @@ class Review < ApplicationRecord
    belongs_to :type
    # soupとreviewは1対多の関係
    belongs_to :soup
-   
+
    #バリデーション
    validates :name,presence: true
    validates :address,presence: true
    validates :menu,presence: true
-   validates :type_id,presence: true 
+   validates :image,presence: true
+   validates :type_id,presence: true
    validates :soup_id,presence: true
    validates :introduction,presence: true
+
+   def favorited_by?(customer)
+     favorites.where(customer_id: customer.id).exists?
+   end
+
 end
 
 
