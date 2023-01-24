@@ -2,7 +2,7 @@ class Public::MyreviewsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @review = Review.where(customer_id: current_customer.id).includes(:customer).order("created_at DESC")
+    @review = Review.where(customer_id: current_customer.id).includes(:customer).order("created_at DESC").page(params[:page])
   end
 
   def destroy

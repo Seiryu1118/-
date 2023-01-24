@@ -23,21 +23,14 @@ class Review < ApplicationRecord
    validates :type_id,presence: true
    validates :soup_id,presence: true
    validates :introduction,presence: true
+   enum status: {
+    "published": true,
+    "draft": false
+   }
+   validates :status,presence: true
 
    def favorited_by?(customer)
      favorites.where(customer_id: customer.id).exists?
    end
 
 end
-
-
- # ユーザのアイコン画像アップロードに対してのバリデーション(.jpg .jpeg .pngのみ許可)
-# private
-
-# def illust_image_type
- # if illust_image.blob
- #  if !illust_image.blob.content_type.in?(%('image/jpeg image/jpg image/png'))
- #    errors.add(:illust_image, 'はjpeg、jpgまたはpng形式でアップロードしてください')
- #  end
- # end
-# end

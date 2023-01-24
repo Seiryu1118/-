@@ -11,27 +11,27 @@
     </tr>
    </thead>
    <tbody>
-     <% @favorites_list.each do |review| %>
+     <% @favorites.each do |favorite| %>
      <tr>
-        <td><%= link_to review.name,review_path(review) %></td>
-        <td><%= review.menu %></td>
-        <td id= 'star<%= review.id %>' ></td>
-        <td>いいね:<%= review.favorites.count %></td>
-        <td>コメント数:<%= review.comments.count %></td>
-        <td><%= review.updated_at.strftime('%Y/%m/%d') %></td>
+        <td><%= link_to favorite.review.name,review_path(favorite.review) %></td>
+        <td><%= favorite.review.menu %></td>
+        <td id= 'star<%= favorite.review.id %>' ></td>
+        <td>いいね:<%= favorite.review.favorites.count %></td>
+        <td>コメント数:<%= favorite.review.comments.count %></td>
+        <td><%= favorite.review.updated_at.strftime('%Y/%m/%d') %></td>
       </tr>
       <script>
-       var elem = document.getElementById('star<%= review.id %>');
+       var elem = document.getElementById('star<%= favorite.review.id %>');
        var opt = {
         size     : 36,
         starOn: "<%= asset_path('star-on.png') %>",
         starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
         readOnly: true,
-        score: <%= review.rate %>
+        score: <%= favorite.review.rate %>
        };
         raty(elem,opt);
       </script>
      <% end %>
    </tbody>
   </table>
+  <%= paginate @favorites %>

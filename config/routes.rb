@@ -15,10 +15,6 @@ scope module: :public do
     patch 'customers/information' => 'customers#update', as: 'update_information'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
-    #  member do
-    #  get :favorites
-    #  end
-    # end
     get 'favorites' => 'favorites#index', as: 'favorites'
 
     resources :reviews, only: [:index,:new,:create,:show,:edit,:update,:destroy] do

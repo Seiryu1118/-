@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
  
   def set_search
     @search = Review.ransack(params[:q])
-    @search_reviews = @search.result
+    @search_review = @search.result
   end 
 
   protected

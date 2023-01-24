@@ -1,9 +1,16 @@
 <h2>みんなのレビュー</h2>
+<%= form_with url: reviews_path, method: :get do |f| %>
+<%= f.collection_select :type_id, Type.all, :id, :name,include_blank: "選択して下さい" %>
+<%= f.collection_select :soup_id, Soup.all, :id, :name,include_blank: "選択して下さい" %>
+<%= f.submit '絞り込み' %>
+<% end %>
 <table class="table table-bordered border-dark">
    <thead>
     <tr class="table-secondary">
       <th>お店</th>
       <th>メニュー</th>
+      <th>分類</th>
+      <th>スープ</th>
       <th>点数</th>
       <th>いいね数</th>
       <th>コメント数</th>
@@ -15,6 +22,8 @@
      <tr>
         <td><%= link_to review.name,review_path(review) %></td>
         <td><%= review.menu %></td>
+        <td><%= review.type.name %></td>
+        <td><%= review.soup.name %></td>
         <td id= 'star<%= review.id %>' ></td>
         <td>いいね:<%= review.favorites.count %></td>
         <td>コメント数:<%= review.comments.count %></td>
@@ -26,7 +35,6 @@
         size     : 36,
         starOn: "<%= asset_path('star-on.png') %>",
         starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
         readOnly: true,
         score: <%= review.rate %>
        };
@@ -35,3 +43,4 @@
      <% end %>
    </tbody>
   </table>
+  <%= paginate @review %>

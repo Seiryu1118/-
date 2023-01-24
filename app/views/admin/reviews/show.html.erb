@@ -2,14 +2,16 @@
   <div class="row">
     <div class="col-10">
       <h2 class="bg-light text-center">レビュー詳細画面</h2>
-      <div id="map" style="width:500px; height:500px"></div>
+      <div id="map" style="width:300px; height:300px"></div>
       <script>
        function initMap(){
         let mapPosition = {lat: <%= @review.latitude || 0 %> , lng: <%= @review.longitude || 0 %> };
         let map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15,
             center: mapPosition,
-            zoomControl: false
+            zoomControl: false,
+            mapTypeControl: false,
+            streetViewControl: false,
          });
         let transitLayer = new google.maps.TransitLayer();
         transitLayer.setMap(map);
@@ -65,7 +67,6 @@
                 size     : 36,
                 starOn: "<%= asset_path('star-on.png') %>",
                 starOff: "<%= asset_path('star-off.png') %>",
-                starHalf: "<%= asset_path('star-half.png') %>",
                 readOnly: true,
                 score: <%= @review.rate %>
                };
@@ -74,11 +75,15 @@
           </tr>
           <tr>
            <td>写真</td>
-           <td><%= image_tag @review.image %></td>
+           <td><%= image_tag @review.image,size:"300x300" %></td>
           </tr>
           <tr>
            <td>コメント</td>
            <td><%= @review.introduction %></td>
+          </tr>
+          <tr>
+          <td>ステータス</td>
+          <td><%= @review.status_i18n %></td>
           </tr>
          </tbody>
         </table>

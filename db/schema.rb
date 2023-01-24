@@ -64,9 +64,7 @@ ActiveRecord::Schema.define(version: 2023_01_19_074412) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "name", null: false
-    t.string "sex"
-    t.string "birth_year"
-    t.text "content"
+    t.integer "sex", default: 0
     t.boolean "is_deleted", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -93,6 +91,7 @@ ActiveRecord::Schema.define(version: 2023_01_19_074412) do
     t.string "menu", null: false
     t.text "introduction", null: false
     t.float "rate", null: false
+    t.boolean "status", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"

@@ -2,8 +2,7 @@ class Public::FavoritesController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @favorites = Favorite.where(customer_id: current_customer.id).pluck(:review_id)
-    @favorites_list = Review.find(@favorites)
+    @favorites = Favorite.where(customer_id: current_customer.id).page(params[:page])
   end
 
   def create

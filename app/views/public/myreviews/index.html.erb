@@ -4,6 +4,8 @@
     <tr class="table-secondary">
       <th>お店</th>
       <th>メニュー</th>
+      <th>分類</th>
+      <th>スープ</th>
       <th>点数</th>
       <th>いいね数</th>
       <th>コメント数</th>
@@ -17,10 +19,16 @@
      <tr>
         <td><%= link_to review.name,review_path(review) %></td>
         <td><%= review.menu %></td>
+        <td><%= review.type.name %></td>
+        <td><%= review.soup.name %></td>
         <td id= 'star<%= review.id %>' ></td>
         <td>いいね:<%= review.favorites.count %></td>
         <td>コメント数:<%= review.comments.count %></td>
-        <td><%= review.updated_at.strftime('%Y/%m/%d') %></td>
+         <% if (review.published?) %>
+      　　<td><%= review.updated_at.strftime('%Y/%m/%d') %></td>
+ 　　　　　　<% else %>
+       　 <td>下書き</td>
+ 　　　　　　<% end %>
         <td><%= link_to '表示する', edit_review_path(review), class: "btn btn-primary" %></td>
         <td><%= link_to '削除する', myreview_path(review), method: :delete, class: "btn btn-primary" %></td>
       </tr>
@@ -30,7 +38,6 @@
         size     : 36,
         starOn: "<%= asset_path('star-on.png') %>",
         starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
         readOnly: true,
         score: <%= review.rate %>
        };
@@ -39,3 +46,4 @@
      <% end %>
    </tbody>
   </table>
+  <%= paginate @review %>

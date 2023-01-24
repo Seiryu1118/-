@@ -13,16 +13,20 @@ class Customer < ApplicationRecord
   #バリデーション
    validates :name,presence: true
    validates :email,presence: true
-  # validates :sex,presence: true
-  # validates :birth_year,presence: true
-  
+  enum sex: {
+    "no_answer":0,
+    "man":1,
+    "woman":2
+   }
+  validates :sex, inclusion: { in: Customer.sexes.keys }, on: :update
+
   def get_image
     (image.attached?) ? image : 'no_image.jpg'
   end
 
   #ゲストログイン
     def self.guest
-    find_or_create_by!(name: 'guestuser',email: 'guest@example.com',sex: '無回答',birth_year: '無回答') do |customer|
+    find_or_create_by!(name: 'guestuser',email: 'guest@example.com',sex: 'no_answer') do |customer|
       customer.password = SecureRandom.urlsafe_base64
       customer.name = "guestuser"
     end
@@ -32,4 +36,7 @@ class Customer < ApplicationRecord
     def active_for_authentication?
      super && (is_deleted == false)
     end
+
+
+
 end

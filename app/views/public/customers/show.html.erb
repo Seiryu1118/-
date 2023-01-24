@@ -2,7 +2,7 @@
 <% if @customer.name != "guestuser" %>
 <p class="font-weight-bold h4">登録情報 <%= link_to "編集する",edit_information_path(@customer), class:"btn btn-success" %></p>
 <% end %>
-<div><%= image_tag @customer.get_image, size:'70x70' %></div>
+<div><%= image_tag @customer.get_image, size:"200x200" %></div>
 <table class="table table-bordered">
   <tbody>
     <tr></tr>
@@ -11,16 +11,12 @@
       <td><%= @customer.name %></td>
     </tr>
     <tr>
+      <td class="table-secondary">メールアドレス</td>
+      <td><%= @customer.email %></td>
+    </tr>
+    <tr>
       <td class="table-secondary">性別</td>
-      <td><%= @customer.sex %></td>
-    </tr>
-    <tr>
-      <td class="table-secondary">生まれた年</td>
-      <td><%= @customer.birth_year %></td>
-    </tr>
-    <tr>
-      <td class="table-secondary">コメント</td>
-      <td><%= @customer.content %></td>
+      <td><%= @customer.sex_i18n %></td>
     </tr>
   </tbody>
 </table>

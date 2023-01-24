@@ -1,2 +1,50 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<div class="container">
+  <div class="row-lg-10">
+    <div class="col-11 offset-md-1">
+      <div class="bg-light text-center">
+<p><%= @customer.name %>さんの会員情報編集</p>
+</div>
+</div>
+
+<%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
+<table class="table">
+ <tbody>
+  <tr></tr>
+  <tr>
+   <th>会員ID</th>
+   <th>
+   <%= @customer.id %>
+   </th>
+  </tr>
+  <tr>
+   <th>アカウント名</th>
+   <th>
+   <%= f.text_field :name %>
+   </th>
+  </tr>
+  <tr>
+   <th>メールアドレス</th>
+   <th>
+   <%= f.text_field :email %>
+   </th>
+  </tr>
+  <tr>
+   <th>性別</th>
+   <th>
+   <%= f.text_field :sex %>
+   </th>
+  </tr>
+  <tr>
+   <th>会員ステータス</th>
+   <th>
+    <% if @customer.is_deleted == false %>
+    <%= f.radio_button :is_deleted, false, checked:true, class:"text-success" %>有効　<%= f.radio_button :is_deleted, true %>退会
+    <% else %>
+    <%= f.radio_button :is_deleted, false, class: "text-success" %>有効　<%= f.radio_button :is_deleted, true, checked:true %>退会
+    <% end %>
+   </th>
+  </tr>
+ </tbody>
+</table>
+<%= f.submit "変更を保存", class: "btn btn-success" %>
+<% end %>

@@ -9,9 +9,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
 
       #追加カラム
       t.string :name, null: false
-      t.string :sex
-      t.string :birth_year
-      t.text :content
+      t.integer :sex, default: 0
       t.boolean :is_deleted, null: false, default: false
 
       ## Recoverable
