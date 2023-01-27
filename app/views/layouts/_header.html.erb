@@ -1,15 +1,24 @@
-<header>
-  <nav class="navbar navbar-light mb-2" style="background-color:#fff7ef;">
-    <div class="container">
-      <p class="text-left"><%= link_to root_path, data: {"turbolinks" => false} do %>
-            <%= image_tag 'Review Box.png',size: '110x110' %>
-            <% end %>
-      </p>
-
+<header style="background-color:#1f1a11;">
+ <div class="container">
+   <div class="row">
+  　  <div class="col-auto me-auto">
+       <div class=><%= link_to root_path, data: {"turbolinks" => false} do %>
+        <%= image_tag 'Ramen Box.png',size: '150x150' %>
+        <% end %>
+       </div>
+      </div>
+      <div class="col-auto ml-auto d-flex align-items-center">
+       <div class="text-right">
+       <% unless admin_signed_in? %>
+       <%= render "layouts/search", { search: @search } %>
+       <% end %>
+       </div>
+    　</div>
+    </div>
     <!--顧客がサインインした場合-->
     <% if customer_signed_in? %>
-    <span>ようこそ！<%= current_customer.name %>さん</span>
-      <ul class="nav justify-content-end">
+    <nav>
+      <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
           <%= link_to "Top", root_path, class: "nav-link" %>
         </li>
@@ -22,15 +31,14 @@
         <li class="nav-item">
           <%= link_to "マイページ", mypage_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-item-end">
           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link" %>
         </li>
       </ul>
 
-
       <!--＜管理者がログインした場合＞-->
       <% elsif admin_signed_in? %>
-      <ul class="nav justify-content-end">
+      <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
           <%= link_to "レビュー一覧", admin_path, class: "nav-link"%>
         </li>
@@ -48,10 +56,9 @@
         </li>
       </ul>
 
-
       <!--＜サインインしていない場合＞-->
       <% else %>
-      <ul class="nav justify-content-end">
+      <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
           <%= link_to "Top", root_path, class: "nav-link" %>
         </li>
@@ -65,12 +72,7 @@
           <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
         </li>
       </ul>
-    <% end %>
-    <div>
-      <% unless admin_signed_in? %>
-      <%= render "layouts/search", { search: @search } %>
       <% end %>
-    </div>
     </div>
   </nav>
 </header>

@@ -7,16 +7,16 @@ class Public::ReviewsController < ApplicationController
 
   def index
     if params[:type_id].blank? && params[:soup_id].blank? && params[:q].blank?
-      @review = Review.published.page(params[:page])
+      @review = Review.published.page(params[:page]).per(8).order("created_at DESC")
     elsif !params[:q].blank?
       @q = Review.ransack(params[:q])
-      @review = @q.result.page(params[:page])
+      @review = @q.result.page(params[:page]).per(8).order("created_at DESC")
     elsif !params[:type_id].blank? && !params[:soup_id].blank?
-      @review = Review.where(status: "published",type_id:params[:type_id],soup_id:params[:soup_id]).page(params[:page])
+      @review = Review.where(status: "published",type_id:params[:type_id],soup_id:params[:soup_id]).page(params[:page]).per(8).order("created_at DESC")
     elsif !params[:type_id].blank? && params[:soup_id].blank?
-      @review = Review.where(status: "published",type_id:params[:type_id]).page(params[:page])
+      @review = Review.where(status: "published",type_id:params[:type_id]).page(params[:page]).per(8).order("created_at DESC")
     elsif params[:type_id].blank? && !params[:soup_id].blank?
-      @review = Review.where(status: "published",soup_id:params[:soup_id]).page(params[:page])
+      @review = Review.where(status: "published",soup_id:params[:soup_id]).page(params[:page]).per(8).order("created_at DESC")
     end
   end
 
@@ -51,7 +51,7 @@ class Public::ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     if @review.update(review_params)
-      redirect_to myreviews_path
+      redirect_to review_path(@review.id)
     else
       render :edit
     end

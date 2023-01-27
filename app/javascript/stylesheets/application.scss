@@ -1,2 +1,98 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav{
+  background-color:#696969;
+}
+
+.nav-item {
+  border: 1px solid #1F191B;
+  border-right:none;
+}
+
+.nav-item-end {
+  border-right: 1px solid #1F191B;
+}
+
+a.nav-link:hover{
+    background-color: #b0c4de !important;
+    color: white;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white ;
+}
+
+
+.pagination {
+   justify-content: center;
+}
+
+/*ページネーション自体のデザイン*/
+.pagination a {
+ border: none;   /*枠線をなくす*/
+ background: none;
+ border-radius: 30px !important;   /*角を丸くする*/
+ color: #464646;
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+ background-color: #f5deb3;   /*背景の色を変える*/
+ color: #464646;
+}
+
+/*現在のページの数字のところのデザイン*/
+.active a{
+ background: #ffa500 !important;
+ color: #464646 !important;
+}
+
+body{
+ background-image: url('../images/back_image.png');
+ background-size: cover;
+}
+
+.table{
+  background-color: #ffffff;
+}
+
+.top-link{
+    margin: 30px;
+    padding: 50px;
+    color: white;
+    background-color: #1f1a11;
+    background-image: url('../images/ramentop.jpg');
+    background-position: center bottom;
+    background-size: cover;
+}
+
+.btn-lg{
+    font-size: 35px;
+    margin-top: 30px;
+    padding: 30px;
+}
+
+.img-fluid{
+    width: 200px;
+    height: 200px;
+}
+
+.example{
+  margin-top: 30px;
+}
+
+.row-color{
+  background-color: #ffffff;
+}
+
+.text-border{
+  border-radius: 30px;
+}

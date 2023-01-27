@@ -5,7 +5,7 @@ class Review < ApplicationRecord
    #GoogleMapの住所入力
    geocoded_by :address
    after_validation :geocode
-
+   
    has_many :comments, dependent: :destroy
    has_many :favorites, dependent: :destroy
    # customerとreviewは1対多の関係

@@ -1,32 +1,36 @@
 <div class="container">
-  <div class="row-lg-11">
-    <h2 class="bg-light text-center">新規会員登録</h2>
-     <div class="col-11">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "public/shared/error_messages", resource: resource %>
-         <table class="table table-borderless text-center">
-          <tbody>
-            <tr>
-              <td>アカウント名</td>
-              <td><%= f.text_field :name, size:"40" %></td>
-            </tr>
-            <tr>
-              <td>メールアドレス</td>
-              <td><%= f.email_field :email, autofocus: true, autocomplete: "email",:placeholder => "sample@example.com",size:"40" %></td>
-            </tr>
-              <td>パスワード(<%= @minimum_password_length %>文字以上)</td>
-              <td><%= f.password_field :password, autocomplete: "new-password",size:"40" %></td>
-            </tr>
-            <tr>
-              <td>パスワード(確認用)</td>
-              <td><%= f.password_field :password_confirmation,size:"40" %></td>
-            </tr>
-          </tbody>
-         </table>
-        <div class="row justify-content-center"><%= f.submit "新規登録",class:"btn btn-success" %></div>
-      <% end %>
-      <div class="row justify-content-center"><%= render "public/shared/links" %></div>
+ <div class="row">
+  <div class="col-md-12">
+   <h2 class="bg-light text-center w100">新規会員登録</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+     <%= render "public/shared/error_messages", resource: resource %>
+      <table class="table table-borderless text-center">
+       <tbody>
+        <tr>
+         <th>アカウント名</th>
+         <td><%= f.text_field :name, size:"40" %></td>
+        </tr>
+        <tr>
+         <th>メールアドレス</th>
+         <td><%= f.email_field :email, autofocus: true, autocomplete: "email",:placeholder => "sample@example.com",size:"40" %></td>
+        </tr>
+         <th>パスワード(<%= @minimum_password_length %>文字以上)</th>
+         <td><%= f.password_field :password, autocomplete: "new-password",size:"40" %></td>
+        </tr>
+        <tr>
+         <th>パスワード(確認用)</th>
+         <td><%= f.password_field :password_confirmation,size:"40" %></td>
+        </tr>
+       </tbody>
+      </table>
+      <div class="row justify-content-center example">
+        <%= f.submit "新規登録",class:"btn btn-success" %>
+      </div>
+    <% end %>
+    <div class="row justify-content-center example">
+      <%= render "public/shared/links" %>
     </div>
   </div>
+ </div>
 </div>
 
