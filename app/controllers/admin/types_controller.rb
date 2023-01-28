@@ -9,6 +9,7 @@ class Admin::TypesController < ApplicationController
   def create
     @type = Type.new(type_params)
     if @type.save
+      flash[:notice] = "新規登録しました"
       redirect_to admin_types_path
     else
       @types = Type.all
@@ -24,6 +25,7 @@ class Admin::TypesController < ApplicationController
   def update
     @type = Type.find(params[:id])
      if @type.update(type_params)
+      flash[:notice] = "内容を変更しました"
       redirect_to admin_types_path
      else
       render :edit

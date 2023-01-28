@@ -1,3 +1,4 @@
+<div class="notice alert-info h4"><%= flash[:notice] %></div>
 <div class="container">
  <div class="row">
   <div class="col-md-12">
@@ -8,9 +9,10 @@
   <div class="col-md-12">
    <table>
     <%= form_with model: @type, url: admin_types_path do |f| %>
-     <td class="col-2 font-weight-bold"><%= f.label :name, "分類名"  %></td>
-     <td class="col-2"><%= f.text_field :name %></td>
-     <td class="col-4"><%= f.submit '新規登録', class: "btn btn-success"%></td>
+     <%= render "admin/shared/error_messages", model: f.object %>
+      <td class="col-2 font-weight-bold"><%= f.label :name, "分類名"  %></td>
+      <td class="col-2"><%= f.text_field :name %></td>
+      <td class="col-4"><%= f.submit '新規登録', class: "btn btn-success"%></td>
     <% end %>
    </table>
   </div>

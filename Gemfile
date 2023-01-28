@@ -66,7 +66,6 @@ gem "geocoder"
 gem "jquery-rails"
 gem 'rails-i18n', '~> 6.0'
 gem 'devise-i18n'
-gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end

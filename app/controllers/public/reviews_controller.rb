@@ -32,6 +32,7 @@ class Public::ReviewsController < ApplicationController
     end
 
     if @review.save
+      flash[:notice] = "投稿が成功しました"
       redirect_to review_path(@review.id)
     else
       render :new
@@ -51,6 +52,7 @@ class Public::ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     if @review.update(review_params)
+      flash[:notice] = "内容を変更しました"
       redirect_to review_path(@review.id)
     else
       render :edit

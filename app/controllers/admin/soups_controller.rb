@@ -9,6 +9,7 @@ class Admin::SoupsController < ApplicationController
   def create
     @soup = Soup.new(soup_params)
     if @soup.save
+      flash[:notice] = "新規登録しました"
       redirect_to admin_soups_path
     else
       @soups = Soup.all
@@ -24,6 +25,7 @@ class Admin::SoupsController < ApplicationController
   def update
     @soup = Soup.find(params[:id])
      if @soup.update(soup_params)
+      flash[:notice] = "内容を変更しました"
       redirect_to admin_soups_path
      else
       render :edit

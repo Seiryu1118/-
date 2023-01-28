@@ -7,11 +7,12 @@
  <div class="row">
   <div class="col-md-8">
    <%= form_with model:@type, url: admin_type_path(@type.id) do |f| %>
-    <table>
-     <td class="col-3 font-weight-bold"><%= f.label :name, "分類名" %></td>
-     <td class="col-2"><%= f.text_field :name %></td>
-     <td class="col-4"><%= f.submit '変更を保存', class: "btn btn-success"%></td>
-    </table>
+    <%= render "admin/shared/error_messages", model: f.object %>
+     <table>
+      <td class="col-3 font-weight-bold"><%= f.label :name, "分類名" %></td>
+      <td class="col-2"><%= f.text_field :name %></td>
+      <td class="col-4"><%= f.submit '変更を保存', class: "btn btn-success"%></td>
+     </table>
    <% end %>
   </div>
  </div>
