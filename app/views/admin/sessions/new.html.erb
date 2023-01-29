@@ -4,6 +4,14 @@
   <div class="col-md-12">
    <h2 class="bg-light text-center w100">管理者ログイン</h2>
     <%= form_with model: @admin, url: admin_session_path, id: 'new_admin', class: 'new_admin', local: true do |f| %>
+    <p class="notice"><%= notice %></p>
+    <% if alert != nil%>
+      <div class="alert alert-danger">
+        <ul class="list-unstyled">
+          <li><%= alert %></li>
+        </ul>
+      </div>
+    <% end %>
      <table class="table table-borderless text-center">
       <tbody>
        <tr>

@@ -5,6 +5,7 @@ ja:
       customer: ユーザー
       type: 分類
       soup: スープ
+      admin: 管理者
     attributes:
       review:
         id: ID
@@ -33,3 +34,6 @@ ja:
       soup:
         id: ID
         name: スープ名
+      admin:
+        email: メールアドレス
+        password: パスワード
