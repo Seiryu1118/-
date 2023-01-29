@@ -1,5 +1,5 @@
 # <ラーメンレビューボックス>
-![ラーメンレビューボックス](app/assets/images/Ramen Box.png)
+![ラーメンレビューボックス](app/assets/images/Ramen_Box.png)
 ## サイト概要
 ### サイトテーマ
 自分の食べたラーメンを投稿し、他の人に紹介するレビューサイト
