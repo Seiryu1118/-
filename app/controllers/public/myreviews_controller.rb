@@ -11,5 +11,4 @@ class Public::MyreviewsController < ApplicationController
     flash[:notice] = "内容を削除しました"
     redirect_to myreviews_path
   end
-
 end

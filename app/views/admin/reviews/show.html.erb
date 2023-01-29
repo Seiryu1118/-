@@ -4,13 +4,11 @@
    <h2 class="bg-light text-center w100">レビュー詳細画面</h2>
   </div>
  </div>
-  
  <div class="row row-color ">
    <div class="col-md-2">投稿者：<%= @review.customer.name %></div>
    <div class="col-md-3">公開日：<%= @review.updated_at.strftime('%Y/%m/%d') %></div>
    <div class="col-md-4 ml-auto text-right"><%= @review.favorites.count %> いいね</div>
  </div>
-    
  <div class="row row-color justify-content-between">
   <div class="col-md-6">
    <table class="table table-borderless">
@@ -38,6 +36,7 @@
      <tr>
       <th>評価</th>
       <td id="star"></td>
+      <!--星評価-->
        <script>
          var elem = document.getElementById('star');
          var opt = {
@@ -55,6 +54,7 @@
   </div>
   <div class="col-md-6">
    <div id="map" style="width:300px; height:300px"></div>
+    <!--GoogleMap-->
     <script>
      function initMap(){
       let mapPosition = {lat: <%= @review.latitude || 0 %> , lng: <%= @review.longitude || 0 %> };
@@ -88,7 +88,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
   </div>
  </div>
- 
  <div class="row row-color justify-content-between">
   <div class="col-md-5">
    <div class="text-center"><%= image_tag @review.image, size:"300x300" %></div>
@@ -98,7 +97,6 @@
    <div><%= @review.introduction %></div>
   </div>
  </div>
- 
  <div class="row row-color justify-content-between">
   <div class="col-md-12">
    <div class="comments_index">
@@ -107,7 +105,6 @@
   </div>
  </div> 
 </div>
-
 <div class= "row justify-content-center">
   <%= link_to '削除する', admin_review_path(@review), method: :delete, class: "btn btn-primary" %>
 </div>

@@ -1,6 +1,10 @@
 class Public::CustomersController < ApplicationController
-   before_action :authenticate_customer!
-   before_action :ensure_guest_customer, only: [:edit]
+  before_action :authenticate_customer!
+  before_action :ensure_guest_customer, only: [:edit]
+
+  def index
+    redirect_to new_customer_registration_path
+  end
 
   def show
     @customer = current_customer
@@ -24,7 +28,6 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
   end
 
-
   def withdraw
     @customer = current_customer
     @customer.update(is_deleted: true)
@@ -32,22 +35,22 @@ class Public::CustomersController < ApplicationController
     flash[:notice] = "退会処理を実行しました"
     redirect_to root_path
   end
-  
+
   def favorites
     @customer = Customer.find(params[:id])
     favorites= Favorite.where(customer_id: @customer.id).pluck(:review_id)
     @favorite_reviews = Review.find(favorites)
   end
 
-  private
-    def customer_params
-       params.require(:customer).permit(:email, :name, :image, :sex)
-    end
+ private
+  def customer_params
+     params.require(:customer).permit(:email, :name, :image, :sex)
+  end
 
-    def ensure_guest_customer
-      @customer = Customer.find(params[:id])
-      if @customer.name == "guestuser"
-        redirect_to mypage_path(current_customer) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
-      end
+  def ensure_guest_customer
+    @customer = Customer.find(params[:id])
+    if @customer.name == "guestuser"
+      redirect_to mypage_path(current_customer) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
+  end
 end

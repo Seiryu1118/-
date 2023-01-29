@@ -26,13 +26,13 @@
          <td>コメント数:<%= review.comments.count %></td>
          <td><%= review.updated_at.strftime('%Y/%m/%d') %></td>
        </tr>
+       <!--星評価-->
        <script>
          var elem = document.getElementById('star<%= review.id %>');
          var opt = {
           size     : 36,
           starOn: "<%= asset_path('star-on.png') %>",
           starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
           readOnly: true,
           score: <%= review.rate %>
          };

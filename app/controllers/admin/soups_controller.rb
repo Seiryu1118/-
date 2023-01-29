@@ -1,5 +1,5 @@
 class Admin::SoupsController < ApplicationController
-   before_action :authenticate_admin!
+  before_action :authenticate_admin!
 
   def index
     @soups = Soup.all
@@ -32,8 +32,7 @@ class Admin::SoupsController < ApplicationController
      end
   end
 
-  private
-
+ private
   def soup_params
     params.require(:soup).permit(:name)
   end

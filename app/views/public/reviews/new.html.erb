@@ -44,6 +44,7 @@
            <%= f.select :status, Review.statuses.keys.map { |k| [I18n.t("enums.review.status.#{k}"),k]} %>
           </td>
         </tr>
+        <!--星評価-->
         <script>
           var elem = document.getElementById('star');
           var opt = {

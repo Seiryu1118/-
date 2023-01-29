@@ -59,8 +59,7 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
-  private
-
+ private
   def review_params
     params.require(:review).permit(:name,:address,:latitude,:longitude,:menu,:introduction,:rate,:image,:status,:type_id,:soup_id)
   end

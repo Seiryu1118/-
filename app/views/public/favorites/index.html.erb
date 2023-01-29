@@ -23,6 +23,7 @@
         <td>コメント数:<%= favorite.review.comments.count %></td>
         <td><%= favorite.review.updated_at.strftime('%Y/%m/%d') %></td>
       </tr>
+      <!--星評価-->
       <script>
         var elem = document.getElementById('star<%= favorite.review.id %>');
         var opt = {

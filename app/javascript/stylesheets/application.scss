@@ -1,69 +1,81 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+// CSSの初期化
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+// ナビゲーションの自体の色
 .nav{
   background-color:#696969;
 }
 
+// ナビゲーションの文字色
+.nav-link {
+  text-decoration: none;
+  color: white ;
+}
+
+// ナビゲーションの枠線
 .nav-item {
   border: 1px solid #1F191B;
   border-right:none;
 }
 
+// ナビゲーションの枠線(一番右)
 .nav-item-end {
   border-right: 1px solid #1F191B;
 }
 
+// ホバー時のデザイン
 a.nav-link:hover{
-    background-color: #b0c4de !important;
-    color: white;
+  background-color: #b0c4de !important;
+  color: white;
 }
 
-.nav-link {
-    text-decoration: none;
-    color: white ;
-}
-
-
+// ページネーションの位置
 .pagination {
-   justify-content: center;
+  justify-content: center;
 }
 
-/*ページネーション自体のデザイン*/
+// ページネーション自体のデザイン
 .pagination a {
- border: none;   /*枠線をなくす*/
- background: none;
- border-radius: 30px !important;   /*角を丸くする*/
- color: #464646;
+  border: none;
+  background: none;
+  border-radius: 30px !important;
+  color: #464646;
 }
 
-/*ホバー時のデザイン*/
-.pagination>li>a:hover {
- background-color: #f5deb3;   /*背景の色を変える*/
- color: #464646;
+// ホバー時のデザイン
+.pagination li a:hover {
+  background-color: #f5deb3;
+  color: #464646;
 }
 
-/*現在のページの数字のところのデザイン*/
+// 現在のページの数字のところのデザイン
 .active a{
- background: #ffa500 !important;
- color: #464646 !important;
+  background: #ffa500 !important;
+  color: #464646 !important;
 }
 
+header{
+  background-color: #1f1a11;
+}
+
+// 背景画像
 body{
- background-image: url('../images/back_image.png');
- background-size: cover;
+  background-image: url('../images/back_image.png');
+  background-size: cover;
 }
 
 .table{
   background-color: #ffffff;
 }
 
+// トップページの画像
 .top-link{
     margin: 30px;
     padding: 50px;
@@ -74,25 +86,30 @@ body{
     background-size: cover;
 }
 
+// トップページの投稿ボタン
 .btn-lg{
     font-size: 35px;
     margin-top: 30px;
     padding: 30px;
 }
 
+// トップページの新着レビュー画像
 .img-fluid{
     width: 200px;
     height: 200px;
 }
 
-.example{
+// 各ページボタン位置
+.position{
   margin-top: 30px;
 }
 
+// レビュー詳細
 .row-color{
   background-color: #ffffff;
 }
 
+// レビュー詳細の説明欄
 .text-border{
   border-radius: 30px;
 }

@@ -1,10 +1,8 @@
+<div class="notice alert-info h4"><%= flash[:notice] %></div>
 <div class="container">
  <div class="row">
   <div class="col-md-12">
    <h2 class="bg-light text-center w100">レビュー一覧</h2>
-   
-   <div class="h3"><%= flash[:notice] %></div>
-   
     <table class="table table-striped table-bordered border-dark w-95 h-95 shadow">
      <thead>
       <tr class="table-secondary">
@@ -44,6 +42,7 @@
          <% end %>
          </td>
        </tr>
+       <!--星評価-->
        <script>
          var elem = document.getElementById('star<%= review.id %>');
          var opt = {
@@ -60,4 +59,5 @@
     </table>
    <%= paginate @review, theme: 'twitter-bootstrap-4'%>
   </div>
+ </div>
 </div>

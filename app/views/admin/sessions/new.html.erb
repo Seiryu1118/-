@@ -3,7 +3,7 @@
  <div class="row">
   <div class="col-md-12">
    <h2 class="bg-light text-center w100">管理者ログイン</h2>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_with model: @admin, url: admin_session_path, id: 'new_admin', class: 'new_admin', local: true do |f| %>
      <table class="table table-borderless text-center">
       <tbody>
        <tr>

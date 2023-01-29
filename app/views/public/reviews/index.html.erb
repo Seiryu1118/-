@@ -2,6 +2,7 @@
  <div class="row">
   <div class="col-md-12">
    <h2 class="bg-light text-center w100">みんなのレビュー</h2>
+   <!--絞り込み機能-->
     <%= form_with url: reviews_path, method: :get do |f| %>
     <%= f.collection_select :type_id, Type.all, :id, :name,include_blank: "選択して下さい" %>
     <%= f.collection_select :soup_id, Soup.all, :id, :name,include_blank: "選択して下さい" %>
@@ -32,6 +33,7 @@
          <td>コメント数:<%= review.comments.count %></td>
          <td><%= review.updated_at.strftime('%Y/%m/%d') %></td>
        </tr>
+       <!--星評価-->
        <script>
          var elem = document.getElementById('star<%= review.id %>');
          var opt = {

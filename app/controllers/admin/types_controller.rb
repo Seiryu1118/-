@@ -1,5 +1,5 @@
 class Admin::TypesController < ApplicationController
-   before_action :authenticate_admin!
+  before_action :authenticate_admin!
    
   def index
     @types = Type.all
@@ -32,8 +32,7 @@ class Admin::TypesController < ApplicationController
      end
   end
  
-  private
-
+ private
   def type_params
     params.require(:type).permit(:name)
   end

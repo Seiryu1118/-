@@ -5,8 +5,11 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  #commentsとcustomerは多対1の関係
   has_many :comments, dependent: :destroy
+  #favoritesとcustomerは多対1の関係
   has_many :favorites, dependent: :destroy
+  #reviewsとcustomerは多対1の関係
   has_many :reviews, dependent: :destroy
 
   #バリデーション
@@ -19,6 +22,7 @@ class Customer < ApplicationRecord
   }
   validates :sex, inclusion: { in: Customer.sexes.keys }, on: :update
 
+  #デフォルトの画像
   def get_image
     (image.attached?) ? image : 'no_image.jpg'
   end
