@@ -19,7 +19,6 @@ class Admin::SoupsController < ApplicationController
 
   def edit
     @soup = Soup.find(params[:id])
-
   end
 
   def update

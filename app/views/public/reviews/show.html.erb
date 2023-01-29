@@ -10,10 +10,10 @@
    <div class="col-md-3">公開日：<%= @review.updated_at.strftime('%Y/%m/%d') %></div>
    <div class="col-md-4 ml-auto text-right" id=<%= "favorite_buttons_" + @review.id.to_s %> >
     <%= render "public/favorites/btn", review: @review %>
+   </div>
    <% if @review.customer == current_customer %>
     <%= link_to "編集する", edit_review_path(@review), class:"btn btn-success" %>
    <% end %>
-   </div>
  </div>
  <div class="row row-color justify-content-between">
   <div class="col-md-6">
