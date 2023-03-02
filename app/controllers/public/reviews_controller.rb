@@ -1,5 +1,6 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :ensure_current_customer, only: [:edit, :update]
 
   def new
     @review = Review.new
@@ -9,7 +10,7 @@ class Public::ReviewsController < ApplicationController
     if params[:type_id].blank? && params[:soup_id].blank? && params[:q].blank?
       @review = Review.published.page(params[:page]).per(8).order("created_at DESC")
     elsif !params[:q].blank?
-      @q = Review.ransack(params[:q])
+      @q = Review.where(status: "published").ransack(params[:q])
       @review = @q.result.page(params[:page]).per(8).order("created_at DESC")
     elsif !params[:type_id].blank? && !params[:soup_id].blank?
       @review = Review.where(status: "published",type_id:params[:type_id],soup_id:params[:soup_id]).page(params[:page]).per(8).order("created_at DESC")
@@ -60,7 +61,14 @@ class Public::ReviewsController < ApplicationController
   end
 
  private
+ 
   def review_params
     params.require(:review).permit(:name,:address,:latitude,:longitude,:menu,:introduction,:rate,:image,:status,:type_id,:soup_id)
+  end
+  
+  def ensure_current_customer
+    unless Review.find(params[:id]).customer_id == current_customer.id
+        redirect_to reviews_path
+    end
   end
 end

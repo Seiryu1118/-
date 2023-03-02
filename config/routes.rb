@@ -35,11 +35,11 @@ Rails.application.routes.draw do
  #管理者用
  namespace :admin do
   resources :reviews, only: [:show,:destroy]
-  resources :types, only: [:index,:create,:edit,:update]
-  resources :soups, only: [:index,:create,:edit,:update]
+  resources :types, only: [:index,:create,:edit,:update,:destroy]
+  resources :soups, only: [:index,:create,:edit,:update,:destroy]
   resources :customers, only: [:index,:show,:edit,:update]
-
   end
+  
   #ゲストユーザーログイン
   devise_scope :customer do
     post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'

@@ -30,7 +30,14 @@ class Admin::SoupsController < ApplicationController
       render :edit
      end
   end
-
+  
+  def destroy
+    @soup = Soup.find(params[:id])
+    @soup.destroy
+    flash[:notice] = "内容を削除しました"
+    redirect_to admin_soups_path
+  end
+  
  private
   def soup_params
     params.require(:soup).permit(:name)

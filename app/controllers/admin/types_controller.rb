@@ -32,6 +32,13 @@ class Admin::TypesController < ApplicationController
      end
   end
  
+  def destroy
+    @type = Type.find(params[:id])
+    @type.destroy
+    flash[:notice] = "内容を削除しました"
+    redirect_to admin_types_path
+  end
+  
  private
   def type_params
     params.require(:type).permit(:name)
